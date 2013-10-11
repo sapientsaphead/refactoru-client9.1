@@ -1,20 +1,35 @@
-describe("Module", function() {
-  it("should do something", function() {
-    expect(true).toEqual(false);
-  });
-});
-
-describe('getDayName', function() {
- it('should return Sunday for 0', function() {
-  expect(getDayName(0)).toBe('Sunday');
- });
- it('should return Monday for 1', function() {
-  expect(getDayName(1)).toBe('Monday');
- });
-})
+// describe("Module", function() {
+//   it("should do something", function() {
+//     expect(true).toEqual(false);
+//   });
+// });
 
 describe("Join", function() {
-	it("should ignore falsey values", function() {
-		expect(join([kittens, puppies, false, null, pandas, undefined, babies, 0, hedgehogs], " and ").toBe('kittens and puppies and pandas and babies and hedgehogs'));
-	})
+	it('should remove zero-length strings', function() {
+	  expect(join(['kittens', "", 'puppies', false, null, 'pandas', undefined, 0, 'hedgehogs'], " and ")).toBe('kittens and puppies and false and null and pandas and undefined and 0 and hedgehogs');
+	});
+	it('should use a default comma if no delimeter is specified', function() {
+	  expect(join(['kittens', 'puppies', 'pandas', 'hedgehogs'])).toBe('kittens,puppies,pandas,hedgehogs');
+	});
+	it('should turn delimeter to string if needed ', function() {
+	  expect(join(['kittens', 'puppies','pandas'], [4, 'u'])).toBe('kittens4,upuppies4,upandas');
+	});
+})
+
+// should use a default comma if no delimeter is specified
+// should remove zero-length string elements from the array
+// should it remove all falsey values?? no... you could have array of true false values and want to keep false
+// should ignore any additional arguments that may be passed?
+// should turn delimeter into string if necessary - apparently it does this already...
+
+describe("Map", function() {
+	it('should remove zero-length strings', function() {
+	  expect(join(['kittens', "", 'puppies', false, null, 'pandas', undefined, 0, 'hedgehogs'], " and ")).toBe('kittens and puppies and false and null and pandas and undefined and 0 and hedgehogs');
+	});
+	it('should use a default comma if no delimeter is specified', function() {
+	  expect(join(['kittens', 'puppies', 'pandas', 'hedgehogs'])).toBe('kittens,puppies,pandas,hedgehogs');
+	});
+	it('should turn delimeter to string if needed ', function() {
+	  expect(join(['kittens', 'puppies','pandas'], [4, 'u'])).toBe('kittens4,upuppies4,upandas');
+	});
 })
